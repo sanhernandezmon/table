@@ -1,19 +1,65 @@
 import { useState } from 'react';
 import useUserStore, { UserData } from '../../stores/useUserStore';
+import { FiSearch, FiX } from 'react-icons/fi';
 import './UserList.css'; 
+
 
 
 const UserList = () => {
   const { users, deleteUser } = useUserStore();
   const [deletingUserId, setDeletingUserId] = useState(0);
+  const [filteredUsers, setFilteredUsers] = useState<UserData[]>(users);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleDeleteClick = (userId: number) => {
-    setDeletingUserId(userId);
     deleteUser(userId);
+    setDeletingUserId(userId);
+    const updatedUsers = users.filter((user) => user.id !== userId);
+    setFilteredUsers(updatedUsers);
   };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      const filtered = users.filter((user) =>
+        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredUsers(filtered);
+    }
+  };
+  
+  const handleSearchClear = () => {
+    setSearchQuery('');
+    setFilteredUsers(users);
+  };
+  
+
 
   return (
     <div className="user-card">
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search by name"
+          className="search-input"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          onKeyDown={handleSearchKeyDown}
+        />
+        {searchQuery.length > 0 && (
+          <button className="search-icon" onClick={handleSearchClear}>
+            <FiX />
+          </button>
+        )}
+        {searchQuery.length === 0 && (
+          <button className="search-icon" disabled={true}>
+            <FiSearch />
+          </button>
+        )}
+      </div>
       <h2>User List</h2>
       <table className="user-table"> 
         <thead>
@@ -25,7 +71,7 @@ const UserList = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user: UserData) => ( 
+          {filteredUsers.map((user: UserData) => ( 
             <tr key={user.email}>
               <td>{user.name}</td>
               <td>{user.email}</td>
@@ -35,6 +81,7 @@ const UserList = () => {
                   onClick={() => handleDeleteClick(user.id)}
                   disabled={deletingUserId === user.id}
                 >
+                  <FiX />
                 </button>
               </td>
             </tr>

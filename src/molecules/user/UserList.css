@@ -32,3 +32,21 @@
 .user-table tbody tr:last-child td {
   border-bottom: none;
 }
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+}

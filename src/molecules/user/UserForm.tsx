@@ -5,12 +5,13 @@ import './UserForm.css'; // Import your CSS file for styling
 
 const UserForm = () => {
   const [user, setUser] = React.useState<UserData>({id: 0, name: '', email: '', number: '' });
-  const {users, addUser } = useUserStore();
+  const {lastUserId, addUser } = useUserStore();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newUser = { ...user, id: users.length + 1 }; // Generate an incremental ID
-    addUser(newUser);    setUser({ id: 0 , name: '', email: '', number: '' }); // Reset form fields
+    const newUser = { ...user, id: lastUserId + 1 }; // Generate an incremental ID
+    addUser(newUser);    
+    setUser({ id: 0 , name: '', email: '', number: '' }); // Reset form fields
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, key: keyof UserData) => {

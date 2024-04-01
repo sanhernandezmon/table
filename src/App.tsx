@@ -1,15 +1,16 @@
 // App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import FormComponent from './molecules/UserForm';
+import FormComponent from './molecules/user/UserForm';
+import UserList from './molecules/user/UserList';
 
 const App: React.FC = () => {
   return (
     <Router>
       <div>
-        <h1>Form</h1>
         <Routes>
-          <Route path="/input" element={<FormComponent />} />
+          <Route path="/user" element={<FormComponent />} />
+            <Route path="/users" element={<UserList />}/>
         </Routes>
       </div>
     </Router>

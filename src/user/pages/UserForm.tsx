@@ -1,6 +1,6 @@
 // UserForm.tsx
 import React from 'react';
-import useUserStore, { UserData } from '../../stores/useUserStore';
+import useUserStore, { UserData } from '../stores/useUserStore';
 import './UserForm.css'; // Import your CSS file for styling
 
 const UserForm = () => {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useUserStore, { UserData } from '../../stores/useUserStore';
+import useUserStore, { UserData } from '../stores/useUserStore';
 import { FiSearch, FiX } from 'react-icons/fi';
 import './UserList.css'; 
 

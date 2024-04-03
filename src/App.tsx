@@ -1,17 +1,14 @@
-// App.tsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import FormComponent from './user/pages/UserForm';
-import UserList from './user/pages/UserList';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRouter from './components/AppRouter';
+import TopBar from './components/TopBar'
 
 const App: React.FC = () => {
   return (
     <Router>
       <div>
-        <Routes>
-          <Route path="/user" element={<FormComponent />} />
-          <Route path="/users" element={<UserList />}/>
-        </Routes>
+        <TopBar />
+        <AppRouter />
       </div>
     </Router>
   );

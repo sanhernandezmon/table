@@ -1,7 +1,7 @@
 // UserForm.tsx
 import React from 'react';
 import useUserStore, { UserData } from '../stores/useUserStore';
-import './UserForm.css'; // Import your CSS file for styling
+import '../styles/UserForm.css'; // Import your CSS file for styling
 
 const UserForm = () => {
   const [user, setUser] = React.useState<UserData>({id: 0, name: '', email: '', number: '' });

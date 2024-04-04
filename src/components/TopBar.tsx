@@ -1,9 +1,8 @@
 // TopBar.tsx
-import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/TopBar.css'; // Import your CSS file for styling
 
-const TopBar: React.FC = () => {
+const TopBar = () => {
   return (
     <nav className="topbar">
       <ul>

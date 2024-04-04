@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React , { useState } from 'react';
 import useUserStore, { UserData } from '../stores/useUserStore';
 import { FiSearch, FiX } from 'react-icons/fi';
 import '../styles/UserList.css'; 
